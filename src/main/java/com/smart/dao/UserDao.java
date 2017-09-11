@@ -36,4 +36,8 @@ public class UserDao {
     public int getMatchCount(String userName,String password){
         return  jdbcTemplate.queryForObject(MATCH_COUNT_SQL,new Object[]{userName,password},Integer.class);
     }
+
+    public void updateLoginInfo(User user){
+        jdbcTemplate.update(UPDATE_LOGIN_INFO_SQL,new Object[]{user.getLastVisit(),user.getLastIp(),user.getCredits(),user.getUserId()});
+    }
 }
